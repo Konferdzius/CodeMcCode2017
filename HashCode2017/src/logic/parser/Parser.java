@@ -99,7 +99,13 @@ public class Parser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		testOutput();
 		return environment;
+	}
+	
+	private void testOutput() {
+		System.out.println("casches: " + environment.caches.size());
+		System.out.println("endpoints: " + environment.endpoints.size());
+		System.out.println("videos: " + environment.videos.size());
 	}
 }
