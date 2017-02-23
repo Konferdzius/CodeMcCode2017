@@ -1,0 +1,10 @@
+package logic.parser;
+
+public class Parser {
+	
+	Environment environment;
+	
+	public Parser() {
+		
+	}
+}
