@@ -14,7 +14,7 @@ public class Server {
 		return count;
 	}
 	
-	public float capacityRatio(){
+	public float getCapacityRatio(){
 		return getCurrentCapacity()/capacity;
 	}
 }
