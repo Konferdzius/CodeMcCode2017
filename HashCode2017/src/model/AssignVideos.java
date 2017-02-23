@@ -14,13 +14,19 @@ public class AssignVideos {
 		for(int i=0; i<env.videos.size(); i++){
 			totalVideoRequests[env.videos.get(i).id] = getTotalRequestCountForVideoWithID(env.videos.get(i).id);
 		}
+		
+		for(int i=0; i<env.endpoints.size(); i++){
+			endpointTotalRequests[i] = getTotalRequestCountForCacheWithID(i);
+		}
 	}
 	
 	private int getTotalRequestCountForCacheWithID(int id){
 		int count = 0;
 		
-		for(int i = 0; i < env.endpoints.size(); i++){
-			count += env.endpoints.get(i).videoRequestCount[id];
+		Endpoint ep = env.endpoints.get(id);
+		
+		for(int i = 0; i < ep.videoRequestCount.length; i++){
+			count += ep.videoRequestCount[i];
 		}
 		
 		return count;
