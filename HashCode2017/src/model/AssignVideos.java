@@ -77,7 +77,41 @@ public class AssignVideos {
 		return count;
 	}
 	
+	/*private int getSlowestConnectionForEndpointWithID(int id){
+		Endpoint e = env.endpoints.get(id);
+		int max  = 0;
+		
+		for(int i = 0; i<e.distanceToCache.length; i++){
+			if(e.distanceToCache[i] > max){
+				max = e.distanceToCache[i];
+			}
+		}
+		
+		if(e.distance > max){
+			max = e.distance;
+		}
+		
+		return max;
+	}
 	
+	private float[] sortMetric(float[] metric){
+		boolean swapped = true;
+	    int j = 0;
+	    float tmp;
+	    while (swapped) {
+	        swapped = false;
+	        j++;
+	        for (int i = 0; i < metric.length - j; i++) {
+	            if (metric[i] > metric[i + 1]) {
+	                tmp = metric[i];
+	                metric[i] = metric[i + 1];
+	                metric[i + 1] = tmp;
+	                swapped = true;
+	            }
+	        }
+	    }
+	    return metric;
+	}*/
 	
 	public void assignVideos(){
 		for (int i = 0; i<bestRatedVideos.length; i++){
@@ -86,6 +120,37 @@ public class AssignVideos {
 				if(cache.getCurrentCapacity() + bestRatedVideos[i].size <= cache.capacity){
 					cache.videos.add(bestRatedVideos[i]);
 				}
+			}
+		}
+	}
+	
+	public void assignVideos2(){
+		for (int i = 0; i<bestRatedVideos.length; i++){
+			float[] metric = new float[env.caches.size()];
+			
+			for(int x=0; x<env.caches.size();x++){
+				Server cache = env.caches.get(x);
+				if(cache.getCurrentCapacity() + bestRatedVideos[i].size <= cache.capacity){
+					for (int y=0; y<env.endpoints.size(); y++){
+						float support = env.endpoints.get(y).videoRequestCount[i]/endpointTotalRequests[y];
+						metric[x] += (1-env.caches.get(x).getCapacityRatio())*env.endpoints.get(y).distanceToCache[x]*support;
+					}
+				}else{
+					metric[x] = 10000;
+				}
+			}
+			float smallest = 100000000;
+			int index = 0;
+			for(int x = 0; x<metric.length; x++){
+				if(metric[x] < smallest){
+					index = x;
+					smallest = metric[x];
+				}
+			}
+			
+			Server cache = env.caches.get(index);
+			if(cache.getCurrentCapacity() + bestRatedVideos[i].size <= cache.capacity){
+				cache.videos.add(bestRatedVideos[i]);
 			}
 		}
 	}
