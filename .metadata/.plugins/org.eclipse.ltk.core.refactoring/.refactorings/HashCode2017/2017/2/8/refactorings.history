@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Move 5 elements to &apos;HashCode2017/src/model&apos;&#x0A;- Original project: &apos;HashCode2017&apos;&#x0A;- Destination element: &apos;HashCode2017/src/model&apos;&#x0A;- Original elements:&#x0A;     Endpoint.java&#x0A;     AssignVideos.java&#x0A;     Server.java&#x0A;     Video.java&#x0A;     Environment.java&#x0A;- Update references to refactored element" description="Move compilation units" destination="/src&lt;model" element1="/src&lt;{Endpoint.java" element2="/src&lt;{AssignVideos.java" element3="/src&lt;{Server.java" element4="/src&lt;{Video.java" element5="/src&lt;{Environment.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1487875558049" units="5" version="1.0"/>
-</session>
