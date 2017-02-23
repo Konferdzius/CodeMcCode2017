@@ -11,7 +11,7 @@ public class AssignVideos {
 		env = environment;
 		
 		totalVideoRequests = new int[env.videos.size()];
-		endpointTotalRequests = new int[env.caches.size()];
+		endpointTotalRequests = new int[env.endpoints.size()];
 		
 		for(int i=0; i<env.videos.size(); i++){
 			totalVideoRequests[env.videos.get(i).id] = getTotalRequestCountForVideoWithID(env.videos.get(i).id);

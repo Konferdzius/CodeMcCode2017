@@ -11,6 +11,7 @@ public class SolutionGatherer {
 	private String srcFile;
 	
 	public SolutionGatherer() {
+		
 		env = new Environment();
 		ArrayList<Server> servers = new ArrayList<Server>();
 		Server one =  new Server();

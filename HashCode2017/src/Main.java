@@ -1,5 +1,7 @@
 import java.io.File;
 
+import SolutionSaving.FileWriter;
+import SolutionSaving.Solution;
 import SolutionSaving.SolutionGatherer;
 import logic.parser.Parser;
 import model.AssignVideos;
@@ -10,13 +12,8 @@ public class Main {
 	public static void main(String[] args) {
 		optimize("./src/kittens.in");
 		//optimize("./src/me_at_the_zoo.in");
-<<<<<<< HEAD
 		//optimize("trending_today.in");
 		//optimize("video_worth_spreading.in");
-=======
-		//optimize("./src/trending_today.in");
-		//optimize("./src/video_worth_spreading.in");
->>>>>>> origin/master
 	}
 	
 	private static void optimize(String filename) {
@@ -28,6 +25,9 @@ public class Main {
 		new AssignVideos(env);		
 		
 		SolutionGatherer gatherer = new SolutionGatherer(env, filename);		
-		gatherer.gatherSolution();
+		Solution s = gatherer.gatherSolution();
+		
+		FileWriter fw = new FileWriter();
+		fw.writeToFile(s);
 	}
 }
