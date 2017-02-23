@@ -1,0 +1,12 @@
+package logic.parser;
+
+import model.*;
+
+public class Parser {
+	
+	Environment environment;
+	
+	public Parser() {
+		environment = new Environment();
+	}
+}
