@@ -9,7 +9,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		optimize("./src/kittens.in");
-		//optimize("me_at_the_zoo.in");
+		//optimize("./src/me_at_the_zoo.in");
 		//optimize("trending_today.in");
 		//optimize("video_worth_spreading.in");
 	}
