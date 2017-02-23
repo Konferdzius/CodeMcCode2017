@@ -32,6 +32,9 @@ public class Parser {
 					numberOfVideos = Integer.parseInt(values[0]);
 					numberOfEndpoints = Integer.parseInt(values[1]);
 					numberOfRequests = Integer.parseInt(values[2]);
+					for (int i = 0; i< Integer.parseInt(values[3]); i++) {
+						
+					}
 				}
 			}
 			
