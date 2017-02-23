@@ -5,6 +5,8 @@ public class AssignVideos {
 	private final int[] totalVideoRequests;
 	private final int[] endpointTotalRequests;
 	
+	private final Video[] bestRatedVideos;
+	
 	public AssignVideos(Environment environment){
 		env = environment;
 		
@@ -18,6 +20,39 @@ public class AssignVideos {
 		for(int i=0; i<env.endpoints.size(); i++){
 			endpointTotalRequests[i] = getTotalRequestCountForCacheWithID(i);
 		}
+		
+		for(int i=0; i<env.videos.size(); i++){
+			Video v = env.videos.get(i);
+			v.globalRating = totalVideoRequests[v.id] / v.size;
+		}
+		
+		bestRatedVideos = sortVideosByGlobalRating();
+	}
+	
+	private Video[] sortVideosByGlobalRating(){
+		Video[] videos = new Video[env.videos.size()];
+		
+		for(int i = 0; i< env.videos.size(); i++){
+			videos[i] = env.videos.get(i);
+		}
+		
+		boolean swapped = true;
+	    int j = 0;
+	    Video tmp;
+	    while (swapped) {
+	        swapped = false;
+	        j++;
+	        for (int i = 0; i < videos.length - j; i++) {
+	            if (videos[i].globalRating < videos[i + 1].globalRating) {
+	                tmp = videos[i];
+	                videos[i] = videos[i + 1];
+	                videos[i + 1] = tmp;
+	                swapped = true;
+	            }
+	        }
+	    }
+		
+		return videos;
 	}
 	
 	private int getTotalRequestCountForCacheWithID(int id){
@@ -42,7 +77,16 @@ public class AssignVideos {
 		return count;
 	}
 	
+	
+	
 	public void assignVideos(){
-		
+		for (int i = 0; i<bestRatedVideos.length; i++){
+			for(int x=0; x<env.caches.size();x++){
+				Server cache = env.caches.get(x);
+				if(cache.getCurrentCapacity() + bestRatedVideos[i].size <= cache.capacity){
+					cache.videos.add(bestRatedVideos[i]);
+				}
+			}
+		}
 	}
 }
