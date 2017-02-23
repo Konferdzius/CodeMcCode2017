@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import model.Environment;
 import model.Server;
+import model.Video;
 
 public class SolutionGatherer {
 	private Environment env;
