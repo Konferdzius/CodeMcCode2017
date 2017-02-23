@@ -1,7 +1,7 @@
 package model;
 
 public class Endpoint {
-	int distance = 0;
-	int[] distanceToCache;
-	int[] videoRequestCount;
+	public int distance = 0;
+	public int[] distanceToCache;
+	public int[] videoRequestCount;
 }
